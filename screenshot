@@ -1,0 +1,10 @@
+#!/usr/bin/env zsh
+filedir=~/Pictures/Screenshots/
+filename=$(cat /dev/urandom | env LC_CTYPE=C tr -dc 'a-zA-Z0-9' | fold -w 8 | head -n 1)
+screencapture -i $filedir$filename.png
+if [ -f $filedir$filename.png ]
+then
+	gsutil cp $filedir$filename.png gs://i.quartzic.co/$filename
+	printf http://i.quartzic.co/$filename | pbcopy
+	afplay /System/Library/Sounds/Glass.aiff
+fi
