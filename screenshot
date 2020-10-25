@@ -5,6 +5,6 @@ screencapture -i $filedir$filename.png
 if [ -f $filedir$filename.png ]
 then
 	gsutil cp $filedir$filename.png gs://i.quartzic.co/$filename
-	printf http://i.quartzic.co/$filename | pbcopy
+	printf https://i.quartzic.co/$filename | pbcopy
 	afplay /System/Library/Sounds/Glass.aiff
 fi
