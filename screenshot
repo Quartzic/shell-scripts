@@ -5,9 +5,9 @@ screencapture -i $filedir$filename.png
 if [ -f $filedir$filename.png ]
 then
 	# Screenshots will be compressed before upload; the local copy will still be full quality.
-	pngquant --quality=0-80 -s7 $filedir$filename.png --ext _compressed.png 
-	gsutil cp $filedir${filename}_compressed.png gs://i.quartzic.co/$filename
+	convert $filedir$filename.png -quality 80% "$filedir${filename}.jpg"
+	rm $filedir$filename.png
+	gsutil cp $filedir${filename}.jpg gs://i.quartzic.co/$filename
 	printf https://i.quartzic.co/$filename | pbcopy
 	afplay /System/Library/Sounds/Glass.aiff
-	rm $filedir${filename}_compressed.png
 fi
