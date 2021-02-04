@@ -1,0 +1,19 @@
+# Install dependencies first:
+# brew install pandoc homebrew/cask/basictex poppler
+
+# Images below this size are ignored
+threshold=2000
+
+mkdir -p pdf-image-split-tmp
+pdfimages -all $1 pdf-image-split-tmp/image
+for image in pdf-image-split-tmp/*
+do
+    filesize=$(stat -f%z $image)
+    if [ $filesize -gt $threshold ]
+        then
+            echo "![]($image)\\\newpage" >> pdf-image-split-tmp.md
+    fi
+done
+pandoc -o "${1%.*}_split.pdf" pdf-image-split-tmp.md
+rm -rf pdf-image-split-tmp
+rm -f pdf-image-split-tmp.md
