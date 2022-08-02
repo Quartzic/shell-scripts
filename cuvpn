@@ -1,0 +1,1 @@
+sudo cuvpn-expect $(op item get "Clemson" --field username) $(op item get "Clemson" --field password)

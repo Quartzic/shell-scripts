@@ -1,0 +1,4 @@
+sudo openconnect \
+    --server=cuvpn.clemson.edu \
+    --protocol=anyconnect \
+    --user=$1
