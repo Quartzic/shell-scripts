@@ -1,0 +1,4 @@
+rm -rf /tmp/gsz
+rsync -ra ngd@ada1.computing.clemson.edu:~/CPSC1070/lab-$1/ /tmp/gsz
+zip -jr /tmp/cpsc1070-lab$1.zip /tmp/gsz/
+mv /tmp/cpsc1070-lab$1.zip .
